@@ -1,6 +1,7 @@
 package codemafia.omdb.domain;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import java.util.Objects;
 
 public class SearchResult {
     @JsonProperty("Title")
@@ -72,4 +73,21 @@ public class SearchResult {
         }
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        if (!super.equals(o)) return false;
+        SearchResult that = (SearchResult) o;
+        return Objects.equals(title, that.title) &&
+                Objects.equals(year, that.year) &&
+                Objects.equals(imdbID, that.imdbID) &&
+                Objects.equals(type, that.type);
+    }
+
+    @Override
+    public int hashCode() {
+
+        return Objects.hash(super.hashCode(), title, year, imdbID, type);
+    }
 }

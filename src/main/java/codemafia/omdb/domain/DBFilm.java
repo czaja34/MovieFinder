@@ -6,7 +6,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
-public class DBFilm {
+public class  DBFilm {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;

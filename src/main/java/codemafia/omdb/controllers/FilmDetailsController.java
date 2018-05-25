@@ -15,6 +15,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 @Controller
 public class FilmDetailsController {
 
+
+
     @Autowired
     private FilmDetailsService filmDetailsService;
 
@@ -22,15 +24,15 @@ public class FilmDetailsController {
     private SearchService searchService;
 
     @GetMapping("/showMovie")
-    public String filmDetail(Model model, @RequestParam String iD) {
+    public String filmDetail(Model model, @RequestParam(value = "iD") String iD) {
         SearchInstance.getInstance().setId(iD);
         FilmDetails film = filmDetailsService.getFilm(iD);
         model.addAttribute("film", film);
-        return "showMovie";
+        return "showMovieTmp";
     }
 
     @RequestMapping("/details")
-    public String filmDetails(Model model, @RequestParam String iD) {
+    public String filmDetails(Model model, @RequestParam(value = "iD") String iD) {
         SearchInstance.getInstance().setId(iD);
         FilmDetails film = filmDetailsService.getFilm(iD);
         model.addAttribute("film", film);

@@ -1,9 +1,9 @@
 package codemafia.omdb.domain;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class FilmList {
     @JsonProperty("Search")
@@ -14,6 +14,10 @@ public class FilmList {
 
     private FilmList(Builder builder) {
         allFilms = builder.allFilms;
+    }
+
+    public void setAllFilms(List<SearchResult> allFilms) {
+        this.allFilms = allFilms;
     }
 
     public List<SearchResult> getAllFilms() {
@@ -36,4 +40,17 @@ public class FilmList {
         }
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        FilmList filmList = (FilmList) o;
+        return Objects.equals(allFilms, filmList.allFilms);
+    }
+
+    @Override
+    public int hashCode() {
+
+        return Objects.hash(allFilms);
+    }
 }

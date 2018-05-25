@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Movie</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+
+    <style>
+
+        .movieDet {
+            background-color: darkgray;
+            border: 5px black;
+            margin-left: 150px;
+            margin-right: 150px;
+            color: white;
+            padding: 1px;
+            text-align: center;
+        }
+
+        .textdet {
+            background-color: white;
+            border: 11px black;
+            margin-left: 150px;
+            margin-right: 150px;
+            color: black;
+            padding: 1px;
+            text-align: center;
+        }
+
+        img {
+            position: center;
+            margin: auto;
+            align: "middle";
+        }
+
+    </style>
+
+</head>
+<body>
+<div th:include="navBar :: menu"></div>
+<br>
+<center>
+    <form th:action="@{/add}">
+        <button type="submit" class="btn btn-dark">Add to List</button>
+    </form>
+    <br/>
+    <form th:action="@{/return}">
+        <button type="submit" class="btn btn-dark">Back to Search Result</button>
+    </form>
+</center>
+<br>
+<table class="table">
+    <thead class="thead-dark">
+    <tr>
+        <th scope="col" class="movieDet">Movie</th>
+        <th scope="col" class="movieDet">Details</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <th scope="row" class="textdet">Title:</th>
+        <td th:text="${film.title}" class="textdet"></td>
+    </tr>
+    <tr>
+        <th scope="row" class="textdet">Directed in Year:</th>
+        <td th:text="${film.year}" class="textdet"></td>
+    </tr>
+    <tr>
+        <th scope="row" class="textdet">Rating:</th>
+        <td th:text="${film.rated}" class="textdet"></td>
+    </tr>
+    <tr>
+        <th scope="row" class="textdet">Year of Release:</th>
+        <td th:text="${film.released}" class="textdet"></td>
+    </tr>
+    <tr>
+        <th scope="row" class="textdet">Length of the Movie:</th>
+        <td th:text="${film.runtime}" class="textdet"></td>
+    </tr>
+    <tr>
+        <th scope="row" class="textdet">Genre(s):</th>
+        <td th:text="${film.genre}" class="textdet"></td>
+    </tr>
+    <tr>
+        <th scope="row" class="textdet">Directed by:</th>
+        <td th:text="${film.director}" class="textdet"></td>
+    </tr>
+    <tr>
+        <th scope="row" class="textdet">Script by:</th>
+        <td th:text="${film.writer}" class="textdet"></td>
+    </tr>
+    <tr>
+        <th scope="row" class="textdet">Starring:</th>
+        <td th:text="${film.actors}" class="textdet"></td>
+    </tr>
+    <tr>
+        <th scope="row" class="textdet">Plot:</th>
+        <td th:text="${film.plot}" class="textdet"></td>
+    </tr>
+    <tr>
+        <th scope="row" class="textdet">Language(s):</th>
+        <td th:text="${film.language}" class="textdet"></td>
+    </tr>
+    <tr>
+        <th scope="row" class="textdet">Directed in:</th>
+        <td th:text="${film.country}" class="textdet"></td>
+    </tr>
+    <tr>
+        <th scope="row" class="textdet">Awards:</th>
+        <td th:text="${film.awards}" class="textdet"></td>
+    </tr>
+    <tr>
+        <th scope="row" class="textdet">Poster:</th>
+        <td><img th:src="${film.poster}" class="img"></td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>

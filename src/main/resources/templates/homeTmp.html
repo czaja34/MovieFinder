@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Movie database</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+</head>
+<body>
+<div th:include="navBar :: menu"></div>
+<br>
+<center>
+    <h2>Here are your favourite movies:</h2>
+    <h4>(Movie details on title click)</h4>
+</center>
+<br>
+<br>
+<center>
+    <table class="table">
+        <thead class="thead-dark">
+        <tr>
+            <th scope="col">Title</th>
+            <th scope="col">Click to remove</th>
+            <th scope="col">Year</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="film : ${films}">
+            <form>
+                <td><a th:href="@{'/details?iD=' + ${film.imdbID}}" th:text="${film.title}"></a></td>
+            </form>
+            <form th:action="@{/removeFilm?id={id}(id=${film.id})}" method="post">
+                <td><button type="submit" class="btn btn-dark">Remove</button></td>
+            </form>
+            <td th:text="${film.year}"></td>
+        </tr>
+        </tbody>
+    </table>
+</center>
+</body>
+</html>

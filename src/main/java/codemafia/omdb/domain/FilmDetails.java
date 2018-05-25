@@ -2,6 +2,8 @@ package codemafia.omdb.domain;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+import java.util.Objects;
+
 public class FilmDetails {
     @JsonProperty("Title")
     private String title;
@@ -234,4 +236,31 @@ public class FilmDetails {
                         " \nposter: " + poster;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        FilmDetails that = (FilmDetails) o;
+        return Objects.equals(title, that.title) &&
+                Objects.equals(year, that.year) &&
+                Objects.equals(rated, that.rated) &&
+                Objects.equals(released, that.released) &&
+                Objects.equals(runtime, that.runtime) &&
+                Objects.equals(genre, that.genre) &&
+                Objects.equals(director, that.director) &&
+                Objects.equals(writer, that.writer) &&
+                Objects.equals(actors, that.actors) &&
+                Objects.equals(plot, that.plot) &&
+                Objects.equals(language, that.language) &&
+                Objects.equals(country, that.country) &&
+                Objects.equals(awards, that.awards) &&
+                Objects.equals(poster, that.poster) &&
+                Objects.equals(imdbID, that.imdbID);
+    }
+
+    @Override
+    public int hashCode() {
+
+        return Objects.hash(title, year, rated, released, runtime, genre, director, writer, actors, plot, language, country, awards, poster, imdbID);
+    }
 }

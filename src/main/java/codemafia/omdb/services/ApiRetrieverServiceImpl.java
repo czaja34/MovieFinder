@@ -7,6 +7,7 @@ import org.springframework.web.client.RestTemplate;
 
 @Service
 public class ApiRetrieverServiceImpl implements ApiRetrieverService {
+
     @Override
     public FilmList searchApiRetriever(String url) {
         RestTemplate template = new RestTemplate();

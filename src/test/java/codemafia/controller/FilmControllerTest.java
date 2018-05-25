@@ -3,7 +3,6 @@ package codemafia.controller;
 import codemafia.omdb.controllers.FilmController;
 import codemafia.omdb.domain.DBFilm;
 import codemafia.omdb.services.DBFilmService;
-import org.apache.catalina.User;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -20,13 +19,14 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import java.util.ArrayList;
 import java.util.List;
 
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.model;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.view;
 
 @RunWith(MockitoJUnitRunner.class)
 @WebAppConfiguration
 public class FilmControllerTest {
-
+    private String redirectHome;
     private MockMvc mockMvc;
     private List<DBFilm> films = new ArrayList<>();
 
@@ -38,17 +38,33 @@ public class FilmControllerTest {
 
     @Before
     public void init() {
+        redirectHome = "redirect:home";
         mockMvc = MockMvcBuilders.standaloneSetup(controller).build();
-        films.add(DBFilm.builder().id(1L).title("Iron Man").year("2014").imdbID("adcr3526").build());
+        films.add(new DBFilm.Builder().id(1L).title("Iron Man").year("2014").imdbID("adcr3526").build());
         Mockito.when(service.displayAll()).thenReturn(films);
     }
+
     @Test
     public void startTest() throws Exception {
-        mockMvc.perform(MockMvcRequestBuilders.get("/start"))
+        mockMvc.perform(MockMvcRequestBuilders.get("/home"))
                 .andExpect(MockMvcResultMatchers.status().isOk())
                 .andExpect(model().attribute("films", films))
-                .andExpect(view().name("home"));
+                .andExpect(view().name("homeTmp"));
     }
 
+//    @Test
+//    public void removeTest() throws Exception {
+//        mockMvc.perform(MockMvcRequestBuilders.get("/remove"))
+//                .andExpect(MockMvcResultMatchers.status().isOk())
+//                .andExpect(model().attribute("films", films))
+//                .andExpect(view().name("removeTem"));
+//    }
+//
+//    @Test
+//    public void removeFilmTest() throws Exception {
+//        mockMvc.perform(MockMvcRequestBuilders.get("/removeFilm"))
+//                .andExpect(MockMvcResultMatchers.status().isOk())
+//                .andExpect(content().string(redirectHome));
+//    }
 }
 

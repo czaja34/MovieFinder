@@ -27,7 +27,7 @@ public class FilmController {
     @RequestMapping("/remove")
     public String remove(Model model) {
         model.addAttribute("films", filmService.displayAll());
-        return "remove";
+        return "removetem";
     }
 
     @RequestMapping("/removeFilm")
@@ -41,9 +41,13 @@ public class FilmController {
         return redirectHome;
     }
 
-    @RequestMapping("/start")
-    public String displayAllFilms(Map<String, Object> model) {
-        model.put("films", filmService.displayAll());
-        return "home";
+    @RequestMapping("home")
+    public String displayAllFilms(Model model) {
+        model.addAttribute("films", filmService.displayAll());
+
+        if (filmService.displayAll().isEmpty()) {
+            return "homeEmpty";
+        }
+        return "homeTmp";
     }
 }
